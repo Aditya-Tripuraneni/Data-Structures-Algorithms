@@ -1,6 +1,12 @@
 import java.util.*;
 
+/* 
+! -------------------------------------- Notes --------------------------------------
+* Stacks are really good for backtracking algorithms. 
+* They are good to keep in mind when working later on in backtracking algorithms
+! -----------------------------------------------------------------------------------
 
+*/
 
 
 public class Main {
@@ -44,15 +50,37 @@ public class Main {
 
 
 
-         /*
-          * Stacks are really good for backtracking algorithms. They are good to keep in mind when 
-          * working later on in backtracking algorithms
-          */
+         
+
+        sortStackByAge(dogStack);
 
 
 
+    }
 
+    /*
+     * This exercise is to sort a stack based on the dogs age in ascending order. 
+     * When peaking this stack, it should return the youngest dog, and the oldest dog should be in the bottom of the stack
+     */
+    public static Stack<Dog> sortStackByAge(Stack<Dog> dogStack){
 
+        Dog[] dogsAge = new Dog[dogStack.size()]; 
+
+        for (int i = 0; i < dogStack.size(); i ++){ 
+            dogsAge[i] = dogStack.get(i);
+        }
+
+        dogStack.clear();
+
+        Arrays.sort(dogsAge, Comparator.comparing(Dog::getAge)); // Sorts by dog age
+
+        for (int i = dogsAge.length -1; i >= 0; i --){ 
+            dogStack.push(dogsAge[i]);
+        }
+        
+        System.out.println("Printing out the youngest dog: " + dogStack.peek().getAge());
+
+        return dogStack;
     }
 }
 
